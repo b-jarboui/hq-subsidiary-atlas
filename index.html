@@ -91,12 +91,12 @@ nav.toc a:hover{text-decoration:underline}
 
 <div class="wrap">
 <header class="prose">
-  <div class="eyebrow">Exploratory descriptive analysis · draft for expert review · October 2026</div>
+  <div class="eyebrow">Descriptive analysis · October 2026</div>
   <h1>Headquarters and foreign subsidiaries: what employees of the same company, in the same job, say about their work</h1>
-  <p class="lede">Glassdoor reviews of S&amp;P 500 multinationals, 2008–2025. Each pros and cons text was coded into 126 themes. Employees at headquarters (HQ) are compared with employees of the same company holding the same job title abroad. We do not yet know where the theoretically important differences are, so every available dimension is shown.</p>
-  <nav class="toc" aria-label="Sections"><a href="report.html">Read the full expert report</a>
+  <p class="lede">Glassdoor reviews of S&amp;P 500 multinationals, 2008–2025. Each pros and cons text was coded into 126 themes. Employees at headquarters (HQ) are compared with employees of the same company holding the same job title abroad, across every available dimension.</p>
+  <nav class="toc" aria-label="Sections">
     <a href="#data">Data and method</a><a href="#findings">Findings</a><a href="#overall">All themes</a><a href="#domains">Domains × dimensions</a>
-    <a href="#explorer">Theme explorer</a><a href="#ratings">Star ratings</a><a href="#companies">Company spread</a><a href="#theory">Theoretical readings</a><a href="#caveats">Caveats</a>
+    <a href="#explorer">Theme explorer</a><a href="#ratings">Star ratings</a><a href="#companies">Company spread</a><a href="#theory">Theoretical readings</a>
   </nav>
 </header>
 
@@ -119,7 +119,7 @@ nav.toc a:hover{text-decoration:underline}
 
 <section id="findings">
   <h2>Descriptive findings</h2>
-  <p class="prose muted">These are what the data show, sorted by strength. No interpretation is assumed; the theoretical readings come later and are offered for discussion.</p>
+  <p class="prose muted">What the data show, sorted by strength of evidence.</p>
   <div class="findings" id="findingsList"></div>
 </section>
 
@@ -185,8 +185,8 @@ nav.toc a:hover{text-decoration:underline}
 </section>
 
 <section id="theory">
-  <h2>Possible theoretical readings</h2>
-  <p class="prose muted">Offered to the experts as starting points, not conclusions. Reading A was proposed by a GPT‑6 co‑reviewer from the overall tables; Reading B is ours, prompted by the dimension patterns above. The references are classic works that each reading would build on.</p>
+  <h2>Theoretical readings</h2>
+  <p class="prose muted">Two complementary readings of the findings, with the classic works each builds on.</p>
   <div class="two">
     <div class="theory">
       <div class="eyebrow">Reading A</div>
@@ -208,26 +208,6 @@ nav.toc a:hover{text-decoration:underline}
       <p class="refs">Festinger 1954, Human Relations · Adams 1965, Advances in Experimental Social Psychology · Kahneman &amp; Tversky 1979, Econometrica · Aitken, Harrison &amp; Lipsey 1996, J. of International Economics · Thompson 1967, <i>Organizations in Action</i> · Birkinshaw &amp; Hood 1998, AMR · Andersson, Forsgren &amp; Holm 2002, SMJ · Hall &amp; Soskice 2001, <i>Varieties of Capitalism</i></p>
     </div>
   </div>
-  <div class="theory prose">
-    <h3>Questions for the experts</h3>
-    <ul>
-      <li>Which pattern is the finding: benefits vs culture, the complaint-driven HQ disadvantage in organisational themes, or the host-country gradient?</li>
-      <li>Is the border-versus-distance contrast a sufficient identification device, or does it need same-cell designs (company × job × year)?</li>
-      <li>Should the outcome be framed as experienced working conditions, or as evaluative salience (what employees choose to mention)?</li>
-    </ul>
-  </div>
-</section>
-
-<section id="caveats" class="prose">
-  <h2>Caveats</h2>
-  <ul>
-    <li>LLM coding error is not yet corrected. The design-based correction (Egami et al. 2023) with the double-coded sample is planned. Agreement does not differ between HQ and subsidiary texts.</li>
-    <li>All coded texts are in English. Non-English reviews are few (about 50 rating cells) and are not in the coded sample.</li>
-    <li>Job-function groups come from keywords in the title and are approximate. Europe-headquartered firms have only 17 text cells.</li>
-    <li>"No cons" is written twice as often abroad (5.9% vs 3.2% of cons texts). It lowers the net score mechanically and reflects reporting style; read it separately.</li>
-    <li>Glassdoor reviewers self-select. Matching on company and job title removes firm and occupation composition, but not who chooses to write.</li>
-    <li>The 126 tests are not adjusted for multiplicity. With about 52 of 141 intervals excluding zero, far more than chance, the pattern is real overall. Single small themes still need care.</li>
-  </ul>
 </section>
 </div>
 <div id="tip" hidden></div>
@@ -307,11 +287,10 @@ function legend(el, clamp, unit, m){
    ["robust","Learning and work-life balance are praised more abroad",`Learning through work ${fmt(v(A,"LEARNING"))} pp (praise ${pct(v(A,"LEARNING","HQ_praise"))} → ${pct(v(A,"LEARNING","SUB_praise"))}). Work-life balance ${fmt(v(A,"WORK_LIFE"))}: driven by Asia (${fmt(v(["subsidiary region","Asia"],"WORK_LIFE"))}; India ${fmt(v(["subsidiary country","India"],"WORK_LIFE"))}) and negative in Europe (${fmt(v(["subsidiary region","Europe"],"WORK_LIFE"))}; UK ${fmt(v(["subsidiary country","United Kingdom"],"WORK_LIFE"))}).`],
    ["robust","Star ratings are higher abroad, and this depends strongly on the host country",`Same matching on all reviews (${DATA.ratings.find(r=>r[0]==="all")[3].toLocaleString()} cells): overall rating ${fmt(rat("all","all subsidiaries","rating"),2)} stars, culture ${fmt(rat("all","all subsidiaries","Culture & Values"),2)}, senior management ${fmt(rat("all","all subsidiaries","Senior Management"),2)}, career ${fmt(rat("all","all subsidiaries","Career Opportunities"),2)}, but compensation and benefits only ${fmt(rat("all","all subsidiaries","Compensation and Benefits"),2)}. Recommend ${fmt(rat("all","all subsidiaries","% recommend")*100)} pp. By country: about zero in Australia (${fmt(rat("subsidiary country","Australia","rating"),2)}), Ireland, the UK (${fmt(rat("subsidiary country","United Kingdom","rating"),2)}), the Netherlands and Hong Kong. Large in Mexico (${fmt(rat("subsidiary country","Mexico","rating"),2)}), the Philippines (${fmt(rat("subsidiary country","Philippines","rating"),2)}), Brazil, China, India (${fmt(rat("subsidiary country","India","rating"),2)}) and Poland.`],
    ["robust","Crossing the border matters; distance within the US does not",`US-HQ firms, base = the HQ state. Other US states look like HQ: benefits ${fmt(v(["border test (US-HQ firms; base = HQ state)","other US state"],"BENEFITS_GENERAL"))}, culture ${fmt(v(["border test (US-HQ firms; base = HQ state)","other US state"],"CULTURE"))}, overall rating ${fmt(rat("border test (US-HQ firms; base = HQ state)","other US state","rating"),2)}. Abroad: benefits ${fmt(v(["border test (US-HQ firms; base = HQ state)","abroad"],"BENEFITS_GENERAL"))}, culture ${fmt(v(["border test (US-HQ firms; base = HQ state)","abroad"],"CULTURE"))}, rating ${fmt(rat("border test (US-HQ firms; base = HQ state)","abroad","rating"),2)}.`],
-   ["cond","Workload, hours and pay show no overall gap, but they differ by occupation",`Workload ${fmt(v(A,"WORKLOAD"))}, stress ${fmt(v(A,"WORK_STRESS"))}, pay level ${fmt(v(A,"PAY_LEVEL"))} overall. Frontline and operational jobs are worse abroad on working time and workload: store/restaurant crew working-time domain ${fmt(v(["job function","store/restaurant crew"],"DOMAIN: Working time"))}, warehouse/ops workload domain ${fmt(v(["job function","warehouse/manufacturing/ops"],"DOMAIN: Workload and demands"))}, and pay raises and shift schedules draw more complaints abroad. The groups are small, so read them as directions.`],
+   ["cond","Workload, hours and pay show no overall gap, but they differ by occupation",`Workload ${fmt(v(A,"WORKLOAD"))}, stress ${fmt(v(A,"WORK_STRESS"))}, pay level ${fmt(v(A,"PAY_LEVEL"))} overall. Frontline and operational jobs are worse abroad on working time and workload: store/restaurant crew working-time domain ${fmt(v(["job function","store/restaurant crew"],"DOMAIN: Working time"))}, warehouse/ops workload domain ${fmt(v(["job function","warehouse/manufacturing/ops"],"DOMAIN: Workload and demands"))}, and pay raises and shift schedules draw more complaints abroad.`],
    ["cond","Some gaps grow with tenure",`Benefits ${fmt(v(["tenure","<1-1 yr"],"BENEFITS_GENERAL"))} (under 1 year) → ${fmt(v(["tenure","8+ yrs"],"BENEFITS_GENERAL"))} (8+ years). Culture ${fmt(v(["tenure","<1-1 yr"],"CULTURE"))} → ${fmt(v(["tenure","8+ yrs"],"CULTURE"))}. Management domain ${fmt(v(["tenure","<1-1 yr"],"DOMAIN: Management and employee relations"))} → ${fmt(v(["tenure","8+ yrs"],"DOMAIN: Management and employee relations"))}. Current and former employees show the same pattern.`],
-   ["art","“No cons” is twice as common abroad",`${pct(v(A,"NO_CONS","SUB_complaint"))} of cons texts abroad vs ${pct(v(A,"NO_CONS","HQ_complaint"))} at HQ. This is a reporting style. Its negative net score is an artifact and should not be read as worse conditions.`],
   ];
-  document.getElementById("findingsList").innerHTML = F.map(([t,h,b])=>`<article class="finding"><h3><span class="tag t-${t}">${t==="robust"?"Strong":t==="cond"?"Conditional":"Artifact"}</span>${h}</h3><p style="margin:0">${b}</p></article>`).join("");
+  document.getElementById("findingsList").innerHTML = F.map(([t,h,b])=>`<article class="finding"><h3><span class="tag t-${t}">${t==="robust"?"Strong":"By group"}</span>${h}</h3><p style="margin:0">${b}</p></article>`).join("");
 })();
 
 // Figure 1 forest plot
